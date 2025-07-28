@@ -22,7 +22,7 @@
 			쿼리스트링 : <%= querString %><br/>
 			아이디 : <%= uid %><br/>
 			이름 : <%= name %><br/>
-			나이 : <%= birth %><br/>
+			생년월일 : <%= birth %><br/>
 		</p>
 	
 		<a href="../1_request.jsp">뒤로가기</a>
