@@ -50,7 +50,7 @@
 		<title>user1::modify</title>
 	</head>
 	<body>
-		<h3>User1 수정</h3>
+		<h3>User2 수정</h3>
 		
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./list.jsp">목록이동</a>

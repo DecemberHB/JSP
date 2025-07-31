@@ -26,7 +26,7 @@
 		PreparedStatement psmt = conn.prepareStatement(sql);
 		psmt.setString(1, user_id);
 		psmt.setString(2, name);
-		psmt.setString(3, hp);
+		psmt.setString(3, hp); 
 		psmt.setString(4, age);
 		
 		// SQL 실행

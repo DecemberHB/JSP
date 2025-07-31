@@ -3,11 +3,11 @@
 	<html>
 	<head>
 	<meta charset="UTF-8">
-	<title>jdbc</title>
+	<title>JDBC</title>
 		<%-- 
 				날짜 : 2025/07/28
 				이름 : 박효빈
-				내용 : JSP cookie 실습
+				내용 : JSP DBCP 실습
 				
 			--%>
 	</head>

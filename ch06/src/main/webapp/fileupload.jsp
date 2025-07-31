@@ -19,14 +19,15 @@
 			
 			 - apache 오픈소스로 제공되는 파일업로드 라이브러리
 			 - Java 지원 재단이 javax에서  jakarta로 변경되어 너무 잦은 버전변경으로 호환성 부족
-			
+			 - apche-commons-fileupload 외부라이브러리 포함
 			3) WAS의 part 방식
 			 - Tocat9 버전부터 지원되는 파일 업로드 방식
 			 - 업로드 파일을 part 객체로 처리됨
 			 
 			 WAS getPart 업로드 설정
 			 - Server > context.xml context 태그 <Context allowCasualMultipartParsing="true"> 속성 선언
-			 - Server > server.xml > 63 라인 Connector 태그에 maxPostSize="10485760"속성 선언	 
+			 - Server > server.xml > 63 라인 Connector 태그에 maxPostSize="10485760"속성 선언
+			 - 별도 라이브러리 필요없음	 
 		--%>
 	</head>
 	<body>

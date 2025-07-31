@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="vo.User1VO"%>
+<%@page import="vo.User1VO"%>  <%-- 사용자 정보 저장을 위한 VO (Value Object) 클래스 import --%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -8,77 +8,48 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
+	// 1. DB 접속 정보 설정
+	String host = "jdbc:oracle:thin:@localhost:1521:xe";  // 오라클 DB 접속 URL
+	String user = "hyokong";  // DB 계정 ID
+	String pass = "1234";     // DB 계정 비밀번호
 
-		String host = "jdbc:oracle:thin:@localhost:1521:xe"; 
-		String user = "hyokong"; 
-		String pass = "1234";
-		
-		
-		List<User1VO> users = new ArrayList<>();
-		
-	try{
+	// 2. 사용자 목록을 담을 리스트 생성
+	List<User1VO> users = new ArrayList<>();
+	
+	try {
+		// 3. 오라클 드라이버 로딩
 		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		// 4. DB 연결
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		
+		// 5. SQL 실행 객체 생성
 		Statement stmt = conn.createStatement();
 		
+		// 6. 실행할 SQL 문
 		String sql = "SELECT * FROM USER1";
+		
+		// 7. SQL 실행 후 결과 저장
 		ResultSet rs = stmt.executeQuery(sql);
 		
+		// 8. 결과셋 반복 → User1VO 객체로 저장 후 리스트에 추가
 		while(rs.next()){
-			
 			User1VO vo = new User1VO();
-			vo.setUser_id(rs.getString(1));
-			vo.setName(rs.getString(2));
-			vo.setHp(rs.getString(3));
-			vo.setAge(rs.getInt(4));
-						
-			users.add(vo);
-			
+			vo.setUser_id(rs.getString(1));  // 첫 번째 컬럼: user_id
+			vo.setName(rs.getString(2));     // 두 번째 컬럼: name
+			vo.setHp(rs.getString(3));       // 세 번째 컬럼: hp
+			vo.setAge(rs.getInt(4));         // 네 번째 컬럼: age
+
+			users.add(vo);  // 리스트에 vo 객체 추가
 		}
-		
+
+		// 9. 자원 정리
 		rs.close();
 		stmt.close();
 		conn.close();
 		
-	}catch(Exception e){
-		e.printStackTrace();
+	} catch(Exception e){
+		e.printStackTrace();  // 에러 발생 시 콘솔에 출력
 	}
 
 %>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>user1::list</title>
-	</head>
-	<body>
-		<h3>User1 목록</h3>
-		
-		<a href="../jdbc.jsp">처음으로</a>
-		<a href="./register.jsp">등록하기</a>
-		
-		<table border="1">
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>휴대폰</th>
-				<th>나이</th>
-				<th>관리</th>
-			</tr>
-			<% for(User1VO user1VO : users){ %>
-			<tr>
-				<td><%= user1VO.getUser_id() %></td>
-				<td><%= user1VO.getName() %></td>
-				<td><%= user1VO.getHp() %></td>
-				<td><%= user1VO.getAge() %></td>
-				<td>
-					<!-- 수정하고자하는 사용자 아이디를 modify.jsp 로 전송 -->
-					<a href="./modify.jsp?user_id=<%= user1VO.getUser_id()%>">수정</a>
-					<a href="./delete.jsp?user_id=<%= user1VO.getUser_id()%>">삭제</a>
-				</td>
-			</tr>			
-			<% } %>
-		</table>		
-	</body>
-</html>

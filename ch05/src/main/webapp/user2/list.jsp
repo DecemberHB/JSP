@@ -14,7 +14,7 @@
 		String pass = "1234";
 		
 		
-		List<User1VO> users = new ArrayList<>();
+		List<User1VO> users = new ArrayList<>(); // users를 리스트 형태로 저장
 		
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -50,10 +50,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user1::list</title>
+		<title>user2::list</title>
 	</head>
 	<body>
-		<h3>User1 목록</h3>
+		<h3>User2 목록</h3>
 		
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./register.jsp">등록하기</a>

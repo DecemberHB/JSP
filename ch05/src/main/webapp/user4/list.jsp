@@ -1,6 +1,6 @@
+<%@page import="vo.User4VO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="vo.User1VO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
@@ -14,7 +14,7 @@
 		String pass = "1234";
 		
 		
-		List<User1VO> users = new ArrayList<>();
+		List<User4VO> users = new ArrayList<>();
 		
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,13 +27,13 @@
 		
 		while(rs.next()){
 			
-			User1VO vo = new User1VO();
-			vo.setUser_id(rs.getString(1));
-			vo.setName(rs.getString(2));
-			vo.setHp(rs.getString(3));
-			vo.setAge(rs.getInt(4));
+			User4VO vo4 = new User4VO();
+			vo4.setName(rs.getString(1));
+			vo4.setGender(rs.getString(2));
+			vo4.setAge(rs.getInt(3));
+			vo4.setAddr(rs.getString(4));
 						
-			users.add(vo);
+			users.add(vo4);
 			
 		}
 		
@@ -53,7 +53,7 @@
 		<title>user1::list</title>
 	</head>
 	<body>
-		<h3>User1 목록</h3>
+		<h3>User4 목록</h3>
 		
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./register.jsp">등록하기</a>
@@ -66,16 +66,16 @@
 				<th>나이</th>
 				<th>관리</th>
 			</tr>
-			<% for(User1VO user1VO : users){ %>
+			<% for(User4VO user4VO : users){ %>
 			<tr>
-				<td><%= user1VO.getUser_id() %></td>
-				<td><%= user1VO.getName() %></td>
-				<td><%= user1VO.getHp() %></td>
-				<td><%= user1VO.getAge() %></td>
+				<td><%= user4VO.getName() %></td>
+				<td><%= user4VO.getGender() %></td>
+				<td><%= user4VO.getAge() %></td>
+				<td><%= user4VO.getAddr() %></td>
 				<td>
 					<!-- 수정하고자하는 사용자 아이디를 modify.jsp 로 전송 -->
-					<a href="./modify.jsp?user_id=<%= user1VO.getUser_id()%>">수정</a>
-					<a href="./delete.jsp?user_id=<%= user1VO.getUser_id()%>">삭제</a>
+					<a href="./modify.jsp?name=<%= user4VO.getName()%>">수정</a>
+					<a href="./delete.jsp?name=<%= user4VO.getName()%>">삭제</a>
 				</td>
 			</tr>			
 			<% } %>
