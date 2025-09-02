@@ -11,11 +11,11 @@
                 </tr>
                 <tr>
                     <td>아이디</td>
-                    <td>hyobin</td>
+                    <td>honggildong</td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td>hyobin@gmail.com</td>
+                    <td>honggildong@gmail.com</td>
                 </tr>
                 <tr>
                     <td>가입일</td>

@@ -6,7 +6,7 @@ import jboard.dto.ArticleDTO;
 import jboard.dto.FileDTO;
 import jboard.util.DBHelper;
 
-public class FileDAO extends DBHelper{
+public class FileDAO extends DBHelper {
 	
 	private final static FileDAO INSTANCE = new FileDAO();
 	public static FileDAO getInstance() {

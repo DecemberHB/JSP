@@ -7,7 +7,7 @@
             <table border="0">
                 <tr>
                     <td>아이디</td>
-                    <td>hyobin</td>
+                    <td>honggildong</td>
                 </tr>
                 <tr>
                     <td>새 비밀번호</td>

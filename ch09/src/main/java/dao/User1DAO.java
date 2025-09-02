@@ -26,7 +26,8 @@ public class User1DAO {
 	
 	// 기본 CRUD 메서드
 	// ✅ 2. INSERT (Create) - 새로운 유저 추가
-	public void insertUser1(User1DTO dto) {		
+	public int insertUser1(User1DTO dto) {		
+		int rowCount = 0;
 		try {
 			// 1. JNDI를 통해 커넥션 풀(DataSource) 객체 얻기
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
@@ -43,7 +44,8 @@ public class User1DAO {
 			psmt.setString(3, dto.getHp());
 			psmt.setInt(4, dto.getAge());
 			
-			psmt.executeUpdate();  // INSERT 실행
+			// INSERT가 성공하면 1, 실패하면 0  (return 값)
+			rowCount = psmt.executeUpdate();  // INSERT 실행
 			
 			// 4. 리소스 정리
 			psmt.close();
@@ -51,6 +53,8 @@ public class User1DAO {
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}
+		
+		return rowCount;
 	}
 	
 	
@@ -129,8 +133,8 @@ public class User1DAO {
 	
 	
 	//UPDATE - 유저 정보 수정
-	public void updateUser1(User1DTO dto) {
-		
+	public int updateUser1(User1DTO dto) {
+		int rowCount = 0;
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc/hyokong");
@@ -144,18 +148,20 @@ public class User1DAO {
 			psmt.setInt(3, dto.getAge());
 			psmt.setString(4, dto.getUser_id());
 			
-			psmt.executeUpdate();
+			rowCount = psmt.executeUpdate(); // 반환처리 09-02
 			
 			psmt.close();
 			conn.close();
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}	
+		return rowCount;
 		
 	}
 	
 	// DELETE - 특정 유저 삭제
-	public void deleteUser1(String user_id) {
+	public int deleteUser1(String user_id) {
+		int rowCount = 0;
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc/hyokong");
@@ -166,12 +172,13 @@ public class User1DAO {
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setString(1, user_id);
 			
-			psmt.executeUpdate();
+			rowCount = psmt.executeUpdate();
 			
 			psmt.close();
 			conn.close();
 		}catch (Exception e) {
 			e.printStackTrace();			
 		}	
+		return rowCount;
 	}
 }

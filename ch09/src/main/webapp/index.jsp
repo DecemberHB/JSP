@@ -24,6 +24,6 @@
 			<a href ="/ch09/greeting.do">greeting</a>
 			
 			<h4>USER1 CRUD</h4>
-			<a href="/ch09/user1/list.do">user1 목록</a>
+			<a href="/ch09/user1/js/list.do">user1 목록</a>
 	</body>
 </html>
