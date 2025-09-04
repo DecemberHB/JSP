@@ -42,7 +42,7 @@ public enum UserService {
 			
 			@Override
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
-				String secret = "ktrfllrnptolwqmr"; // 내 시크릿 코드 입력 (지금 안뎀)
+				String secret = "ktrfllrnptolwqmr";
 				return new PasswordAuthentication(SENDER, secret);
 			}		
 		});
@@ -73,8 +73,8 @@ public enum UserService {
 	public int getUserCount(String col, String value) {
 		return dao.selectCount(col, value);
 	}
-	public UserDTO findById(String usid) {
-		return dao.select(usid);
+	public UserDTO findByPass(UserDTO dto) {
+		return dao.select(dto);
 	}
 	public List<UserDTO> findAll() {
 		return dao.selectAll();
